@@ -1,15 +1,91 @@
-const AuthCard = () => {
-  return (
-    <div>
-      {/* TODO logo here */}
-      <div>
-        <img src="" alt="" />
-      </div>
+import { FiLogIn } from "solid-icons/fi";
+import { AiOutlineEye } from "solid-icons/ai";
+import { AiTwotoneEyeInvisible } from "solid-icons/ai";
+import { createSignal } from "solid-js";
+import Button from "./Button";
 
-      {/* text */}
-      <div>
-        <h1 class="text-cyan-500 font-bold text-4xl">OrderFlow</h1>
-        <h1>Sign in to your account</h1>
+const AuthCard = () => {
+  const [show, setShow] = createSignal(false);
+  const [isNewUser, setNewUser] = createSignal(true);
+
+  const icon = FiLogIn;
+  const text = "sign in";
+
+  return (
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      {/* box */}
+      <div class="rounded-2xl shadow-xl p-10 border border-gray-100">
+        {/* TODO logo here */}
+        <div>
+          <img src="" alt="" />
+        </div>
+
+        {/* text */}
+        <div class="text-center">
+          <h1 class="text-cyan-500 font-bold text-4xl">OrderFlow</h1>
+          {isNewUser() ? "Sign in to your account" : "Create a new account"}
+        </div>
+
+        {/* form */}
+        <form class="mt-5 w-[300px]">
+          <fieldset class="fieldset">
+            {/* name */}
+            <div class="">
+              <legend class="fieldset-legend text-gray-800">
+                Email Address
+              </legend>
+              <input
+                type="email"
+                class="input"
+                placeholder="user@mail.com"
+                required
+              />
+            </div>
+
+            {/* password */}
+            <div>
+              <legend class="fieldset-legend text-gray-800">Password</legend>
+              <div class=" relative">
+                <input
+                  type={show() ? "text" : "password"}
+                  class="input"
+                  placeholder="Your Password"
+                  required
+                />
+                <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                  {show() ? (
+                    <AiTwotoneEyeInvisible
+                      class="text-xl text-red-600 cursor-pointer"
+                      onClick={() => setShow(false)}
+                    />
+                  ) : (
+                    <AiOutlineEye
+                      class="text-xl text-green-600 cursor-pointer"
+                      onClick={() => setShow(true)}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* button */}
+            <Button icon={icon} text={text} />
+          </fieldset>
+        </form>
+
+        {/* new user */}
+        <div class="mt-4 text-center">
+          {
+            <button
+              class="cursor-pointer text-teal-600 hover:text-teal-700 font-medium text-sm transition-colors"
+              onclick={() => setNewUser(!isNewUser())}
+            >
+              {isNewUser()
+                ? "Don't have an account"
+                : "Already have an account? Sign in"}
+            </button>
+          }
+        </div>
       </div>
     </div>
   );

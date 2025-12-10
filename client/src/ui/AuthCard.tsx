@@ -1,15 +1,18 @@
-import { FiLogIn } from "solid-icons/fi";
+import { FiLogIn, FiLogOut } from "solid-icons/fi";
 import { AiOutlineEye } from "solid-icons/ai";
 import { AiTwotoneEyeInvisible } from "solid-icons/ai";
 import { createSignal } from "solid-js";
 import Button from "./Button";
 
 const AuthCard = () => {
-  const [show, setShow] = createSignal(false);
+  const [showPassword, setShowPassword] = createSignal(false);
+  const [confirmPassword, setConfirmPassword] = createSignal(false);
   const [isNewUser, setNewUser] = createSignal(true);
 
-  const icon = FiLogIn;
-  const text = "sign in";
+  // form handler
+  const formHandler = (e: any) => {
+    e.preventDefault();
+  };
 
   return (
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -27,7 +30,7 @@ const AuthCard = () => {
         </div>
 
         {/* form */}
-        <form class="mt-5 w-[300px]">
+        <form onsubmit={formHandler} class="mt-5 w-[300px]">
           <fieldset class="fieldset">
             {/* name */}
             <div class="">
@@ -35,6 +38,7 @@ const AuthCard = () => {
                 Email Address
               </legend>
               <input
+                name="email"
                 type="email"
                 class="input"
                 placeholder="user@mail.com"
@@ -47,29 +51,65 @@ const AuthCard = () => {
               <legend class="fieldset-legend text-gray-800">Password</legend>
               <div class=" relative">
                 <input
-                  type={show() ? "text" : "password"}
+                  type={showPassword() ? "text" : "password"}
+                  name="password"
                   class="input"
                   placeholder="Your Password"
                   required
                 />
                 <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                  {show() ? (
+                  {showPassword() ? (
                     <AiTwotoneEyeInvisible
                       class="text-xl text-red-600 cursor-pointer"
-                      onClick={() => setShow(false)}
+                      onClick={() => setShowPassword(false)}
                     />
                   ) : (
                     <AiOutlineEye
                       class="text-xl text-green-600 cursor-pointer"
-                      onClick={() => setShow(true)}
+                      onClick={() => setShowPassword(true)}
                     />
                   )}
                 </div>
               </div>
             </div>
 
+            {/* confirm password */}
+            {isNewUser() && (
+              <div>
+                <legend class="fieldset-legend text-gray-800">
+                  Confirm Password
+                </legend>
+                <div class=" relative">
+                  <input
+                    type={confirmPassword() ? "text" : "password"}
+                    name="retype password"
+                    class="input"
+                    placeholder="Retype Your Password"
+                    required
+                  />
+                  <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    {confirmPassword() ? (
+                      <AiTwotoneEyeInvisible
+                        class="text-xl text-red-600 cursor-pointer"
+                        onClick={() => setConfirmPassword(false)}
+                      />
+                    ) : (
+                      <AiOutlineEye
+                        class="text-xl text-green-600 cursor-pointer"
+                        onClick={() => setConfirmPassword(true)}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* button */}
-            <Button icon={icon} text={text} />
+            {(() => {
+              const icon = isNewUser() ? FiLogIn : FiLogOut;
+              const text = isNewUser() ? "Create New Account" : "sign in";
+              return <Button icon={icon} text={text} />;
+            })()}
           </fieldset>
         </form>
 

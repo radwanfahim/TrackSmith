@@ -1,7 +1,5 @@
-import type { Component } from "solid-js";
-
 interface ButtonProps {
-  icon: Component;
+  icon: Function;
   text: string;
 }
 

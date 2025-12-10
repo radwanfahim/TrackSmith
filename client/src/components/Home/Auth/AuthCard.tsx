@@ -2,16 +2,35 @@ import { FiLogIn, FiLogOut } from "solid-icons/fi";
 import { AiOutlineEye } from "solid-icons/ai";
 import { AiTwotoneEyeInvisible } from "solid-icons/ai";
 import { createSignal } from "solid-js";
-import Button from "./Button";
+import Button from "../../../ui/Button";
+import SigninGoogle from "./SigninGoogle";
 
 const AuthCard = () => {
   const [showPassword, setShowPassword] = createSignal(false);
   const [confirmPassword, setConfirmPassword] = createSignal(false);
-  const [isNewUser, setNewUser] = createSignal(true);
+  const [isNewUser, setNewUser] = createSignal(false);
+  const [isErr, setErr] = createSignal<string>("");
 
   // form handler
-  const formHandler = (e: any) => {
+  const formHandler = async (e: any) => {
     e.preventDefault();
+
+    // form data
+    const formData = new FormData(e.target);
+
+    // email password retype password
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const retypePassword = formData.get("retype password") as string;
+
+    if (isNewUser() && password !== retypePassword) {
+      return setErr("Passwords do not match");
+    }
+
+    try {
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -26,11 +45,14 @@ const AuthCard = () => {
         {/* text */}
         <div class="text-center">
           <h1 class="text-cyan-500 font-bold text-4xl">OrderFlow</h1>
-          {isNewUser() ? "Sign in to your account" : "Create a new account"}
+
+          <h1 class="mt-1">
+            {isNewUser() ? "Sign in to your account" : "Create a new account"}
+          </h1>
         </div>
 
         {/* form */}
-        <form onsubmit={formHandler} class="mt-5 w-[300px]">
+        <form onsubmit={formHandler} class="mt-3 w-[300px]">
           <fieldset class="fieldset">
             {/* name */}
             <div class="">
@@ -104,7 +126,7 @@ const AuthCard = () => {
               </div>
             )}
 
-            {/* button */}
+            {/* SECTION button */}
             {(() => {
               const icon = isNewUser() ? FiLogIn : FiLogOut;
               const text = isNewUser() ? "Create New Account" : "sign in";
@@ -113,16 +135,24 @@ const AuthCard = () => {
           </fieldset>
         </form>
 
+        {/* sign in with google */}
+        <SigninGoogle />
+
+        {/* error handler */}
+        <div class="mt-3">
+          <h1 class="text-red-500 text-center">{isErr()}</h1>
+        </div>
+
         {/* new user */}
-        <div class="mt-4 text-center">
+        <div class="mt-2 text-center">
           {
             <button
               class="cursor-pointer text-teal-600 hover:text-teal-700 font-medium text-sm transition-colors"
               onclick={() => setNewUser(!isNewUser())}
             >
               {isNewUser()
-                ? "Don't have an account"
-                : "Already have an account? Sign in"}
+                ? "Already have an account? Sign in"
+                : "Don't have an account "}
             </button>
           }
         </div>

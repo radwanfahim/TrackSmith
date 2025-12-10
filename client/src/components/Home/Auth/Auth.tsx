@@ -1,4 +1,4 @@
-import AuthCard from "../../../ui/AuthCard";
+import AuthCard from "./AuthCard";
 
 const Auth = () => {
   return (

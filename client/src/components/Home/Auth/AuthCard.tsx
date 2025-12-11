@@ -44,10 +44,10 @@ const AuthCard = () => {
 
         {/* text */}
         <div class="text-center">
-          <h1 class="text-cyan-500 font-bold text-4xl">OrderFlow</h1>
+          <h1 class="text-cyan-500 font-bold text-4xl">TrackSmith</h1>
 
           <h1 class="mt-1">
-            {isNewUser() ? "Sign in to your account" : "Create a new account"}
+            {isNewUser() ? "Create a new account" : "Sign in to your account"}
           </h1>
         </div>
 

@@ -1,9 +1,9 @@
-import "./style.css";
+import "./NotFound.css";
 
 const NotFound = () => {
   return (
-    <section>
-      <div></div>
+    <section class="notfound-container">
+      <div class="notfound-bg"></div>
       <svg
         id="svgWrap_2"
         xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ const NotFound = () => {
         </defs>
       </svg>
 
-      <h2>Page Not Found</h2>
+      <h2 class="notfound-text">Page Not Found</h2>
     </section>
   );
 };

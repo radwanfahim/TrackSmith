@@ -9,7 +9,7 @@ function App() {
     <>
       <Router>
         <Route path="/" component={Home} />
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard/home" component={Dashboard} />
         <Route path="*" component={NotFound} />
       </Router>
     </>

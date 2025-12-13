@@ -130,7 +130,7 @@ const AuthCard = () => {
             {(() => {
               const icon = isNewUser() ? FiLogIn : FiLogOut;
               const text = isNewUser() ? "Create New Account" : "sign in";
-              return <Button icon={icon} text={text} />;
+              return <Button icon={icon} text={text} style="button-default" />;
             })()}
           </fieldset>
         </form>

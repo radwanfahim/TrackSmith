@@ -10,7 +10,9 @@ function App() {
     <>
       <Router>
         <Route path="/" component={Home} />
+        {/* dashboard */}
         <Route path="/dashboard" component={Dashboard}>
+          {/* dashboard routes */}
           <Route path="/home" component={HomeDash} />
           <Route path="/orders" component={OrderDash} />
         </Route>

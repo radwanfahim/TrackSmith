@@ -4,7 +4,7 @@ import Home from "./components/Home/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
 import NotFound from "./shared/NotFound/NotFound";
 import HomeDash from "./components/Dashboard/HomeDash";
-import OrderDash from "./components/Dashboard/OrderDash";
+import OrderDash from "./components/Dashboard/Order/OrderDash";
 function App() {
   return (
     <>

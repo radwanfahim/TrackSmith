@@ -1,19 +1,20 @@
 interface ButtonProps {
-  icon: Function;
+  icon?: Function | string;
   text: string;
   style: string;
 }
 
 const Button = ({ icon, text, style }: ButtonProps) => {
-  const Icon = icon;
-
   return (
     <button class={style}>
-      <div class="flex items-center justify-center gap-2">
+      <div class={`${icon ? "flex" : ""}  items-center justify-center gap-2`}>
         {/* icon */}
-        <span class="text-2xl">
-          <Icon />
-        </span>
+        {icon && (
+          <span class="text-2xl">
+            {typeof icon === "function" ? icon({}) : icon}
+          </span>
+        )}
+
         {/* text */}
         <span class="text-lg capitalize">{text}</span>
       </div>

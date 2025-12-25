@@ -16,7 +16,7 @@ const Button = ({ icon, text, style }: ButtonProps) => {
         )}
 
         {/* text */}
-        <span class="text-lg capitalize">{text}</span>
+        <span class={`${icon ? "text-lg" : "text-sm"} capitalize`}>{text}</span>
       </div>
     </button>
   );

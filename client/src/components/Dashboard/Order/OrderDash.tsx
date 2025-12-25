@@ -2,6 +2,11 @@ import { BsPlus } from "solid-icons/bs";
 import Button from "../../../ui/Button";
 import Search from "./Search";
 import Filter from "./Filter";
+import Table from "../../../ui/Table";
+import {
+  OrderTableColData,
+  OrderTableRowData,
+} from "../../../api/OrderTableData";
 
 const OrderDash = () => {
   const plusBtn = BsPlus;
@@ -23,16 +28,17 @@ const OrderDash = () => {
       </div>
 
       {/* show order */}
-      <div class="border border-gray-200 mt-6 p-5 rounded-lg shadow-lg">
-        {/* search */}
-        <Search />
+      <div class="border border-gray-200 mt-6  rounded-lg shadow-lg">
+        <div class="p-5">
+          {/* search */}
+          <Search />
 
-        {/* filter */}
-        <div class="">
+          {/* filter */}
           <Filter />
         </div>
-        {/* orders */}
-        <div></div>
+
+        {/* table */}
+        <Table {...[OrderTableColData, OrderTableRowData]} />
       </div>
     </div>
   );

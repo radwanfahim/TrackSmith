@@ -21,13 +21,42 @@ const Table = (props: any) => {
             {
               <For each={columns}>
                 {(t) => {
-                  console.log(t);
+                  const value = Object.values(t);
 
                   return (
                     <tr>
-                      <td>Cy Ganderton</td>
-                      <td>Cy Ganderton</td>
-                      <td>Cy Ganderton</td>
+                      <For each={value}>
+                        {(val: any, index) => {
+                          // index
+                          const isPayment = index() === 5;
+
+                          //  payment color logic
+                          let paymentColor = "";
+                          if (isPayment) {
+                            if (val === "Online")
+                              paymentColor = "text-blue-600 font-semibold";
+                            if (val === "Paid")
+                              paymentColor = "text-green-600 font-semibold";
+                            if (val === "COD")
+                              paymentColor = "text-red-600 font-semibold";
+                          }
+                          return (
+                            <td
+                              class={`${index() === 0 ? "font-bold" : ""} ${
+                                index() === 3 && typeof val === "number"
+                                  ? "font-bold"
+                                  : ""
+                              } ${
+                                index() === 4 && typeof val === "number"
+                                  ? "text-green-600 font-bold"
+                                  : ""
+                              } ${paymentColor}`}
+                            >
+                              {typeof val === "number" ? `$${val}` : val}
+                            </td>
+                          );
+                        }}
+                      </For>
                     </tr>
                   );
                 }}

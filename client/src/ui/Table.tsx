@@ -24,35 +24,65 @@ const Table = (props: any) => {
                   const value = Object.values(t);
 
                   return (
-                    <tr>
+                    <tr class="">
                       <For each={value}>
                         {(val: any, index) => {
                           // index
                           const isPayment = index() === 5;
+                          const isStatus = index() === 6;
+                          // font weight logic
+                          const isFontBold =
+                            index() === 0 || index() === 3 ? "font-bold" : "";
+                          const isProfit =
+                            index() === 4 ? "text-green-600 font-bold" : "";
 
                           //  payment color logic
                           let paymentColor = "";
                           if (isPayment) {
-                            if (val === "Online")
-                              paymentColor = "text-blue-600 font-semibold";
+                            if (val === "Pending")
+                              paymentColor =
+                                "text-yellow-200 font-semibold bg-yellow-500 text-center ";
                             if (val === "Paid")
-                              paymentColor = "text-green-600 font-semibold";
+                              paymentColor =
+                                "text-green-200 font-semibold bg-green-500 text-center ";
                             if (val === "COD")
-                              paymentColor = "text-red-600 font-semibold";
+                              paymentColor =
+                                "text-orange-200 font-semibold bg-orange-500 text-center ";
+                            if (val === "Refunded")
+                              paymentColor =
+                                "text-red-200 font-semibold bg-red-500 text-center ";
                           }
+
+                          // status color logic
+                          let statusColor = "";
+                          if (isStatus) {
+                            if (val === "Delivered")
+                              statusColor =
+                                "text-green-200 bg-green-500 font-semibold text-center ";
+                            if (val === "Shipped")
+                              statusColor =
+                                "text-blue-200 bg-blue-500 font-semibold text-center ";
+                            if (val === "Processing")
+                              statusColor =
+                                "text-yellow-200 bg-yellow-500 font-semibold text-center ";
+                            if (val === "Cancelled")
+                              statusColor =
+                                "text-red-200 bg-red-500 font-semibold ";
+                          }
+
                           return (
-                            <td
-                              class={`${index() === 0 ? "font-bold" : ""} ${
-                                index() === 3 && typeof val === "number"
-                                  ? "font-bold"
-                                  : ""
-                              } ${
-                                index() === 4 && typeof val === "number"
-                                  ? "text-green-600 font-bold"
-                                  : ""
-                              } ${paymentColor}`}
-                            >
-                              {typeof val === "number" ? `$${val}` : val}
+                            <td class={`${isFontBold} ${isProfit} `}>
+                              {isPayment || isStatus ? (
+                                <span
+                                  class={`badge py-3 w-full ${
+                                    isPayment ? paymentColor : statusColor
+                                  }`}
+                                >
+                                  {val}
+                                </span>
+                              ) : (
+                                <>{typeof val === "number" ? `$${val}` : val}</>
+                              )}
                             </td>
                           );
                         }}

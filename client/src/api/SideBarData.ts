@@ -1,5 +1,6 @@
 import { AiTwotoneShopping } from "solid-icons/ai";
 import { VsHome } from "solid-icons/vs";
+import { FiUsers } from "solid-icons/fi";
 
 const SidebarData = [
   {
@@ -11,6 +12,11 @@ const SidebarData = [
     text: "Orders",
     icon: AiTwotoneShopping,
     link: "/dashboard/orders",
+  },
+  {
+    text: "Customers",
+    icon: FiUsers,
+    link: "/dashboard/customers",
   },
 ];
 

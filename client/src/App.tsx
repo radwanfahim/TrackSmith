@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import NotFound from "./shared/NotFound/NotFound";
 import HomeDash from "./components/Dashboard/HomeDash";
 import OrderDash from "./components/Dashboard/Order/OrderDash";
+import CustomersDash from "./components/Dashboard/Customers/CustomersDash";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
           {/* dashboard routes */}
           <Route path="/home" component={HomeDash} />
           <Route path="/orders" component={OrderDash} />
+          <Route path="/customers" component={CustomersDash} />
         </Route>
         <Route path="*" component={NotFound} />
       </Router>

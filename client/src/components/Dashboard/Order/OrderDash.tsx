@@ -1,31 +1,23 @@
-import { BsPlus } from "solid-icons/bs";
-import Button from "../../../ui/Button";
-import Search from "./Search";
+import Search from "../../../ui/Search";
 import Filter from "./Filter";
 import Table from "../../../ui/Table";
 import {
   OrderTableColData,
   OrderTableRowData,
 } from "../../../api/OrderTableData";
+import DashHeader from "../../../ui/DashHeader";
 
 const OrderDash = () => {
-  const plusBtn = BsPlus;
+  const dashHeaderData = {
+    title: "Orders",
+    description: "Manage all customer orders",
+    buttonText: "Add Order",
+  };
+
   return (
     <div>
-      <div class="flex justify-between items-center">
-        {/* text */}
-        <div>
-          <h1 class="text-3xl font-bold text-gray-700">Orders</h1>
-          <p class="capitalize text-gray-700 mt-2">
-            Manage all customer orders
-          </p>
-        </div>
-
-        {/* button */}
-        <div>
-          <Button icon={plusBtn} text="Add Order" style="button-default px-5" />
-        </div>
-      </div>
+      {/* header */}
+      <DashHeader dashHeaderData={dashHeaderData} />
 
       {/* show order */}
       <div class="border border-gray-200 mt-6  rounded-lg shadow-lg">

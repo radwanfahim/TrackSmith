@@ -8,11 +8,15 @@ import {
 import DashHeader from "../../../ui/DashHeader";
 
 const OrderDash = () => {
+  // header data
   const dashHeaderData = {
     title: "Orders",
     description: "Manage all customer orders",
     buttonText: "Add Order",
   };
+
+  //   search text
+  const searchText = "Search order by customer or product...";
 
   return (
     <div>
@@ -23,7 +27,7 @@ const OrderDash = () => {
       <div class="border border-gray-200 mt-6  rounded-lg shadow-lg">
         <div class="p-5">
           {/* search */}
-          <Search />
+          <Search searchText={searchText} />
 
           {/* filter */}
           <Filter />

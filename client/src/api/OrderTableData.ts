@@ -1,4 +1,6 @@
-interface OrderTable {}
+interface OrderTable {
+  value: string;
+}
 
 const OrderTableRowData: OrderTable[] = [
   {

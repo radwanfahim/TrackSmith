@@ -32,9 +32,14 @@ const Table = (props: any) => {
                           const isStatus = index() === 6;
                           // font weight logic
                           const isFontBold =
-                            index() === 0 || index() === 3 ? "font-bold" : "";
+                            index() === 0 ||
+                            (index() === 3 && typeof val === "number")
+                              ? "font-bold"
+                              : "";
                           const isProfit =
-                            index() === 4 ? "text-green-600 font-bold" : "";
+                            index() === 4 && typeof val === "number"
+                              ? "text-green-600 font-bold"
+                              : "";
 
                           //  payment color logic
                           let paymentColor = "";
@@ -81,7 +86,9 @@ const Table = (props: any) => {
                                   {val}
                                 </span>
                               ) : (
-                                <>{typeof val === "number" ? `$${val}` : val}</>
+                                <>
+                                  {typeof val === "number" ? `$${val}` : val}
+                                </>
                               )}
                             </td>
                           );

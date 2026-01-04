@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "@solidjs/router";
 import { TbLayoutSidebarLeftExpand } from "solid-icons/tb";
 import { createSignal, For, Show } from "solid-js";
 import SidebarData from "../../api/SideBarData";
+import SIgnOut from "../Home/Auth/SIgnOut";
 
 const Dashboard = (props: any) => {
   const location = useLocation();
@@ -75,6 +76,12 @@ const Dashboard = (props: any) => {
                 );
               }}
             </For>
+
+            {/* sign out */}
+            <div class="absolute bottom-5 is-drawer-close:w-[80%] w-[90%]">
+              <div class="divider"></div>
+              <SIgnOut />
+            </div>
           </ul>
         </div>
       </div>

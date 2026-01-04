@@ -1,7 +1,7 @@
 import {
   CustomerTableColData,
   CustomerTableRowData,
-} from "../../../api/CustomertableData";
+} from "../../../api/CustomerTableData";
 import DashHeader from "../../../ui/DashHeader";
 import Search from "../../../ui/Search";
 import Table from "../../../ui/Table";

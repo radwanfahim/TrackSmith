@@ -1,6 +1,7 @@
 import { For } from "solid-js";
 import Card from "../../ui/Card";
 import HomeDashCardData from "../../api/HomeDashCardData";
+import Chart from "../../ui/Chart";
 
 const HomeDash = () => {
   return (
@@ -20,6 +21,8 @@ const HomeDash = () => {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <For each={HomeDashCardData}>{(item) => <Card {...item} />}</For>
       </div>
+
+      <Chart />
     </div>
   );
 };
